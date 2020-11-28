@@ -1,6 +1,7 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import {
   Container,
@@ -41,6 +42,7 @@ const Header = () => {
             </ul>
           </div>
         </ColapsibleMenu>
+
         <Menu>Sobre</Menu>
         <ContainerPesquisa>
           <Pesquisa></Pesquisa>
@@ -49,7 +51,10 @@ const Header = () => {
           </BtnPesquisa>
         </ContainerPesquisa>
       </ContainerMenus>
-      <Login>Login</Login>
+
+      <Link to="/configuracao" style={{ textDecoration: "none" }}>
+        <Login>Login</Login>
+      </Link>
     </Container>
   );
 };
