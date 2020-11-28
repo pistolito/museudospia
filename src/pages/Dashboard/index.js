@@ -4,16 +4,7 @@ import { FiSearch } from "react-icons/fi";
 
 import {
   Container,
-  Header,
-  Logo,
-  NomeInstituicao,
-  Login,
   Body,
-  Menu,
-  ContainerMenus,
-  Pesquisa,
-  ContainerPesquisa,
-  BtnPesquisa,
   Lista,
   TituloCategoria,
   ContainerSlider,
@@ -21,7 +12,6 @@ import {
   Descricao,
   ImagemObjeto,
   ContainerDescricao,
-  ColapsibleMenu,
 } from "./styles";
 
 const objetos = [
@@ -72,34 +62,6 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <Header>
-        <Logo />
-        <NomeInstituicao>Unoesc</NomeInstituicao>
-        <ContainerMenus>
-          <Menu>Home</Menu>
-          <ColapsibleMenu>
-            <input type="checkbox" id="menu-categoria" />
-            <label htmlFor="menu-categoria">Categorias</label>
-            <div>
-              <ul>
-                {categorias.map((categoria) => (
-                  <li key={categoria.id}>
-                    <a>{categoria.descricao}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </ColapsibleMenu>
-          <Menu>Sobre</Menu>
-          <ContainerPesquisa>
-            <Pesquisa></Pesquisa>
-            <BtnPesquisa>
-              <FiSearch size={20} />
-            </BtnPesquisa>
-          </ContainerPesquisa>
-        </ContainerMenus>
-        <Login>Login</Login>
-      </Header>
       <Body>
         <TituloCategoria>Categoria</TituloCategoria>
         <Lista>
