@@ -29,7 +29,7 @@ const Objeto = ({ id }) => {
   return (
     <Container>
       <Cadastro>
-        <label id="titulo">Local</label>
+        <label id="titulo">Objetos</label>
         <Card>
           <Campo>
             <label>Nome: </label> <input placeholder="Informe nome..." />

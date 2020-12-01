@@ -48,7 +48,7 @@ const Categoria = ({ id }) => {
   return (
     <Container>
       <Cadastro>
-        <label id="titulo">Instituição</label>
+        <label id="titulo">Categorias</label>
         <Card>
           <Campo>
             <label>Nome: </label> <input placeholder="Informe o nome da categoria..."/>
