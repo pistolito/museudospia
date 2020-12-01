@@ -34,7 +34,7 @@ export const Card = styled.div`
   flex-direction: column;
 
   button {
-    margin: 20px 0 0 110px;
+    margin: 20px 0 0 90px;
     width: 300px;
     height: 30px;
     background-color: green;
@@ -55,11 +55,17 @@ export const Campo = styled.div`
     margin: 0;
   }
   label {
-    width: 130px;
+    width: 80px;
     font-size: 18px;
   }
   input {
-    width: calc(100% - 100px);
+    width: calc(100% - 80px);
+    height: 30px;
+    border: 1px solid #e6e6ee;
+    border-radius: 5px;
+  }
+  select {
+    width: 200px;
     height: 30px;
     border: 1px solid #e6e6ee;
     border-radius: 5px;
@@ -70,6 +76,55 @@ export const Campo = styled.div`
     border: 1px solid #e6e6ee;
     border-radius: 5px;
     resize: none;
+  }
+  div#login {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    input {
+      flex: 1;
+      height: 30px;
+      border: 1px solid #e6e6ee;
+      border-radius: 5px;
+    }
+    label {
+      width: 80px;
+      font-size: 18px;
+    }
+    label#papel {
+      margin-left: 20px;
+    }
+  }
+  div#senha {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    input {
+      width: calc(100% - 80px);
+      height: 30px;
+      border: 1px solid #e6e6ee;
+      border-radius: 5px;
+    }
+    label {
+      width: 80px;
+      font-size: 18px;
+    }
+  }
+  div#confirma {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    input {
+      width: calc(100% - 80px);
+      height: 30px;
+      border: 1px solid #e6e6ee;
+      border-radius: 5px;
+    }
+    label {
+      margin-left: 20px;
+      width: 200px;
+      font-size: 18px;
+    }
   }
 `;
 
@@ -94,7 +149,7 @@ export const Cabecalho = styled.div`
   background-color: #e6e6e6;
   display: flex;
   align-items: center;
- 
+
   span {
     padding-left: 10px;
     min-width: 50px;
@@ -105,20 +160,28 @@ export const Cabecalho = styled.div`
     max-width: 100px;
   }
   span#complemento {
-      flex: 3;
-    }
+    flex: 3;
+  }
+  span#papel {
+    border-left: none;
+    max-width: 130px;
+  }
+  span#login {
+    border-left: none;
+    max-width: 400px;
+  }
 `;
 export const Grid = styled.div`
   display: flex;
   flex: 1;
   overflow: auto;
-  max-height: 380px;
+  max-height: 400px;
   flex-direction: column;
 
   div#row {
     display: flex;
     align-items: center;
-    
+
     border: 1px solid #e6e6e6;
     span {
       padding-left: 10px;
@@ -133,11 +196,19 @@ export const Grid = styled.div`
     span#first {
       border-left: none;
     }
+    span#papel {
+      border-left: none;
+      max-width: 130px;
+    }
+    span#login {
+      border-left: none;
+      max-width: 400px;
+    }
     span#acoes {
       padding: 0;
       width: 100px;
       max-width: 100px;
-      align-items:center;
+      align-items: center;
       justify-content: space-around;
     }
 

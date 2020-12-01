@@ -55,7 +55,7 @@ export const Campo = styled.div`
     margin: 0;
   }
   label {
-    width: 130px;
+    width: 100px;
     font-size: 18px;
   }
   input {
@@ -86,7 +86,6 @@ export const ContainerGrid = styled.div`
   border-radius: 5px;
   padding: none;
   height: fit-content;
-  min-height: 200px;
   border: 1px solid #e6e6e6;
 `;
 export const Cabecalho = styled.div`
@@ -94,9 +93,8 @@ export const Cabecalho = styled.div`
   background-color: #e6e6e6;
   display: flex;
   align-items: center;
- 
+  padding-left: 10px;
   span {
-    padding-left: 10px;
     min-width: 50px;
     flex: 1;
   }
@@ -104,8 +102,11 @@ export const Cabecalho = styled.div`
     width: 100px;
     max-width: 100px;
   }
-  span#complemento {
-      flex: 3;
+  span#endereco {
+    flex: 2;
+  }
+  span#first {
+      max-width: 80px;
     }
 `;
 export const Grid = styled.div`
@@ -118,11 +119,10 @@ export const Grid = styled.div`
   div#row {
     display: flex;
     align-items: center;
-    
     border: 1px solid #e6e6e6;
     span {
-      padding-left: 10px;
       display: flex;
+      padding-left: 10px;
       align-items: center;
       border-right: 1px solid #e6e6e6;
       border-left: 1px solid #e6e6e6;
@@ -132,17 +132,17 @@ export const Grid = styled.div`
     }
     span#first {
       border-left: none;
+      max-width: 80px;
     }
     span#acoes {
-      padding: 0;
       width: 100px;
       max-width: 100px;
       align-items:center;
       justify-content: space-around;
     }
 
-    span#complemento {
-      flex: 3;
+    span#endereco {
+      flex: 2;
     }
   }
 `;

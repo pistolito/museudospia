@@ -55,7 +55,7 @@ export const Campo = styled.div`
     margin: 0;
   }
   label {
-    width: 130px;
+    width: 100px;
     font-size: 18px;
   }
   input {
@@ -94,19 +94,18 @@ export const Cabecalho = styled.div`
   background-color: #e6e6e6;
   display: flex;
   align-items: center;
- 
   span {
-    padding-left: 10px;
     min-width: 50px;
+    padding-left: 10px;
     flex: 1;
   }
   span#acoes {
     width: 100px;
     max-width: 100px;
   }
-  span#complemento {
-      flex: 3;
-    }
+  span#endereco {
+    flex: 2;
+  }
 `;
 export const Grid = styled.div`
   display: flex;
@@ -118,14 +117,13 @@ export const Grid = styled.div`
   div#row {
     display: flex;
     align-items: center;
-    
     border: 1px solid #e6e6e6;
     span {
-      padding-left: 10px;
       display: flex;
       align-items: center;
       border-right: 1px solid #e6e6e6;
       border-left: 1px solid #e6e6e6;
+      padding-left: 10px;
       min-width: 50px;
       flex: 1;
       height: 30px;
@@ -134,15 +132,14 @@ export const Grid = styled.div`
       border-left: none;
     }
     span#acoes {
-      padding: 0;
       width: 100px;
       max-width: 100px;
-      align-items:center;
+      align-items: center;
       justify-content: space-around;
     }
 
-    span#complemento {
-      flex: 3;
+    span#endereco {
+      flex: 2;
     }
   }
 `;

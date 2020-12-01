@@ -34,7 +34,7 @@ export const Card = styled.div`
   flex-direction: column;
 
   button {
-    margin: 20px 0 0 110px;
+    margin: 20px 0 0 140px;
     width: 300px;
     height: 30px;
     background-color: green;
@@ -59,7 +59,7 @@ export const Campo = styled.div`
     font-size: 18px;
   }
   input {
-    width: calc(100% - 100px);
+    width: calc(100% - 130px);
     height: 30px;
     border: 1px solid #e6e6ee;
     border-radius: 5px;
@@ -112,7 +112,7 @@ export const Grid = styled.div`
   display: flex;
   flex: 1;
   overflow: auto;
-  max-height: 380px;
+  max-height: 400px;
   flex-direction: column;
 
   div#row {

@@ -52,7 +52,7 @@ const Header = () => {
         </ContainerPesquisa>
       </ContainerMenus>
 
-      <Link to="/configuracao" style={{ textDecoration: "none" }}>
+      <Link to="/login" style={{ textDecoration: "none" }}>
         <Login>Login</Login>
       </Link>
     </Container>

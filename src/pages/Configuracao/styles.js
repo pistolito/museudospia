@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: calc(100% - 70px);
+  height: fit-content;
 `;
 
 export const ContainerMenus = styled.div`
@@ -89,19 +89,31 @@ export const BtnPesquisa = styled.div`
 
 export const Body = styled.div`
   width: 100%;
-  height: calc(100% - 70px);
+  height: 100%;
   background-color: white;
 `;
 
+export const Corpo = styled.div`
+  display: flex;
+	flex-direction: column;
+  height: calc(100vh - 120px);
+`;
+
 export const ContainerMenuLateral = styled.div`
-  label {
-    display: flex;
-    width: 250px;
-    height: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    align-items: center;
+  button {
+    border: none;
     padding-left: 15px;
+    font-size: 20px;
+    align-items: center;
+    display: flex;
+    label {
+      display: flex;
+      width: 130px;
+      height: 50px;
+      font-weight: bold;
+      align-items: center;
+      margin-left: 10px;
+    }
   }
   input#menu-lateral {
     display: none;
@@ -124,10 +136,14 @@ export const ContainerMenuLateral = styled.div`
       height: 50px;
       display: flex;
       font-size: 16px;
-      border-bottom: 1px solid #e6e6e6;
-      padding: 0 0 0 15px;
       align-items: center;
+      button {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: white;
+        border-bottom: 1px solid #e6e6e6;
+      }
     }
   }
 `;
-
