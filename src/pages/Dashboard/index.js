@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import api from "../../services/api";
 import { FiSearch } from "react-icons/fi";
 
 import {
@@ -12,66 +13,47 @@ import {
   Descricao,
   ImagemObjeto,
   ContainerDescricao,
+  Local,
+  Pesquisa,
+  BtnPesquisa,
+  PesquisaContainer,
 } from "./styles";
 
-const objetos = [
-  {
-    id: 1,
-    nome: "Objeto 1",
-    descricao:
-      "husbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwuk",
-  },
-  {
-    id: 5,
-    nome: "Objeto 5",
-    descricao:
-      "husbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwukhusbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwukhusbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwukhusbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwukhusbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwukhusbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwukhusbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwukhusbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwuk",
-  },
-  {
-    id: 2,
-    nome: "Objeto 2",
-    descricao:
-      "husbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwuk",
-  },
-  {
-    id: 3,
-    nome: "Objeto 3",
-    descricao:
-      "husbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwuk",
-  },
-  {
-    id: 4,
-    nome: "Objeto 4",
-    descricao:
-      "husbjfjlaehblgkjsrnlgkjbsrlkgjbdjhrgbkehsrgkjhaebrfkhajwvekavjyregvqgvfhawgvkfuavwuk",
-  },
-];
-
-const categorias = [
-  { id: 1, descricao: "Categoria 1" },
-  { id: 2, descricao: "Categoria 2" },
-  { id: 3, descricao: "Categoria 3" },
-];
-
 const Dashboard = () => {
-  const [Renderizar, setRenderizar] = useState();
+  const [objeto, setObjeto] = useState([]);
 
-  const mudarRender = (componente, id) => {
-    setRenderizar(componente);
-  };
+  let { id } = useParams();
 
+  useEffect(() => {
+    const adquirirCategoria = async () => {
+      const response = await api.get(`objeto/categoria/${id}`);
+      setObjeto(response.data);
+    };
+    adquirirCategoria();
+  }, [id]);
+
+  const pesquisar = () => {
+    
+  }
   return (
     <Container>
       <Body>
         <TituloCategoria>Categoria</TituloCategoria>
+        <PesquisaContainer>
+          <Pesquisa></Pesquisa>
+          <BtnPesquisa>
+            <FiSearch size={20} />
+          </BtnPesquisa>
+        </PesquisaContainer>
         <Lista>
-          {objetos.map((e) => (
+          {objeto.map((e) => (
             <ContainerSlider key={e.id}>
-              <ImagemObjeto></ImagemObjeto>
+              <ImagemObjeto src={e.Arquivos[0].url}></ImagemObjeto>
               <ContainerDescricao>
                 <Nome>{e.nome}</Nome>
                 <Descricao>{e.descricao}</Descricao>
               </ContainerDescricao>
+              <Local>Se encontra no local: {e.Local.descricao}</Local>
             </ContainerSlider>
           ))}
         </Lista>

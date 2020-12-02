@@ -38,7 +38,7 @@ export const ContainerDescricao = styled.div`
   flex-direction: column;
   align-items: initial;
   height: 100%;
-  width: calc(100% - 290px);
+  width: calc(80% - 290px);
   padding: 25px;
 `;
 
@@ -58,4 +58,32 @@ export const ImagemObjeto = styled.img`
   min-width: 250px;
   height: 150px;
   margin-left: 30px;
+`;
+
+export const Local = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  font-size: 12px;
+`;
+
+export const Pesquisa = styled.input`
+  width: 200px;
+  height: 30px;
+  background-color: #e6e6e6;
+  margin: 0 15px 0 15px;
+`;
+
+export const BtnPesquisa = styled.div`
+  :hover {
+    cursor: pointer;
+    border: 1px solid;
+  }
+`;
+
+export const PesquisaContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

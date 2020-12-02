@@ -84,6 +84,7 @@ export const ColapsibleMenu = styled.div`
 
   li {
     margin-top: 10px;
+    background: #ddd;
   }
 
   div {
@@ -108,20 +109,6 @@ export const ContainerPesquisa = styled.div`
   height: 40px;
   width: 400px;
   right: 20px;
-`;
-
-export const Pesquisa = styled.input`
-  width: 200px;
-  height: 30px;
-  background-color: #e6e6e6;
-  margin: 0 15px 0 15px;
-`;
-
-export const BtnPesquisa = styled.div`
-  :hover {
-    cursor: pointer;
-    border: 1px solid;
-  }
 `;
 
 export const Slide = styled.div`

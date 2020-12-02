@@ -1,27 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import api from "../../services/api";
 
 import { Container, Card } from "./styles";
 
-const instituicoes = [
-  { id: 1, nome: "Instituição 1" },
-  { id: 2, nome: "Instituição 2" },
-  { id: 2, nome: "Instituição 3" }
-];
-
 const Login = () => {
+  const [instituicao, setInstituicao] = useState([]);
+  const [login, setLogin] = useState();
+  const [senha, setSenha] = useState();
+
+  useEffect(() => {
+    const adquirirInstituicao = async () => {
+      const response = await api.get("instituicao");
+      setInstituicao(response.data);
+    };
+
+    adquirirInstituicao();
+  }, []);
+
+  const enviar = async () => {
+    const response = await api.post("sessions", {
+      codigo_instituicao: document.getElementById("selectIn").value,
+      login,
+      senha,
+    });
+
+    api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+  };
+
   return (
     <Container>
       <Card>
         <label>Login</label>
-        <select placeholder="Instituição...">
-          {instituicoes.map((instituicao) => (
-            <option value={instituicao.id}>{instituicao.nome}</option>
+        <select id="selectIn" placeholder="Instituição...">
+          {instituicao.map((instituicao) => (
+            <option key={instituicao.id} value={instituicao.id}>
+              {instituicao.nome}
+            </option>
           ))}
         </select>
-        <input type="text"  placeholder="Login..."/>
-        <input type="password"  placeholder="Senha..."/>
+        <input
+          onChange={(e) => setLogin(e.target.value)}
+          type="text"
+          placeholder="Login..."
+        />
+        <input
+          onChange={(e) => setSenha(e.target.value)}
+          type="password"
+          placeholder="Senha..."
+        />
 
-        <button>ENTRAR</button>
+        <button onClick={() => enviar()}>ENTRAR</button>
       </Card>
     </Container>
   );

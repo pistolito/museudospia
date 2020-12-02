@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { FiSearch } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+
+import api from "../../services/api";
 
 import {
   Container,
@@ -23,6 +24,15 @@ const categorias = [
 ];
 
 const Header = () => {
+  const [categoria, setCategoria] = useState([]);
+
+  useEffect(() => {
+    const adquirirCategoria = async () => {
+      const response = await api.get("categoria");
+      setCategoria(response.data);
+    };
+    adquirirCategoria();
+  }, []);
   return (
     <Container>
       <Logo />
@@ -34,9 +44,14 @@ const Header = () => {
           <label htmlFor="menu-categoria">Categorias</label>
           <div>
             <ul>
-              {categorias.map((categoria) => (
+              {categoria.map((categoria) => (
                 <li key={categoria.id}>
-                  <a>{categoria.descricao}</a>
+                  <Link
+                    to={`/${categoria.id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <a>{categoria.nome}</a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -44,12 +59,7 @@ const Header = () => {
         </ColapsibleMenu>
 
         <Menu>Sobre</Menu>
-        <ContainerPesquisa>
-          <Pesquisa></Pesquisa>
-          <BtnPesquisa>
-            <FiSearch size={20} />
-          </BtnPesquisa>
-        </ContainerPesquisa>
+        <ContainerPesquisa></ContainerPesquisa>
       </ContainerMenus>
 
       <Link to="/login" style={{ textDecoration: "none" }}>
