@@ -49,6 +49,7 @@ export const Campo = styled.div`
   font-size: 18px;
   margin: 10px;
   display: flex;
+  justify-content: space-between;
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -59,7 +60,7 @@ export const Campo = styled.div`
     font-size: 18px;
   }
   input {
-    width: calc(100% - 80px);
+    width: calc(95% - 80px);
     height: 30px;
     border: 1px solid #e6e6ee;
     border-radius: 5px;
@@ -69,6 +70,7 @@ export const Campo = styled.div`
     height: 30px;
     border: 1px solid #e6e6ee;
     border-radius: 5px;
+    margin-left: 10px;
   }
   textarea {
     width: calc(100% - 100px);

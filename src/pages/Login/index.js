@@ -3,7 +3,7 @@ import api from "../../services/api";
 
 import { Container, Card } from "./styles";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [instituicao, setInstituicao] = useState([]);
   const [login, setLogin] = useState();
   const [senha, setSenha] = useState();
@@ -24,7 +24,10 @@ const Login = () => {
       senha,
     });
 
-    api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+    if (response.data.token) {
+      localStorage.setItem("token", "Bearer " + response.data.token);
+      history.push("/configuracao");
+    }
   };
 
   return (

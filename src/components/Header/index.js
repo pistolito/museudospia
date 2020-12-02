@@ -17,12 +17,6 @@ import {
   ColapsibleMenu,
 } from "./styles";
 
-const categorias = [
-  { id: 1, descricao: "Categoria 1" },
-  { id: 2, descricao: "Categoria 2" },
-  { id: 3, descricao: "Categoria 3" },
-];
-
 const Header = () => {
   const [categoria, setCategoria] = useState([]);
 
@@ -35,10 +29,12 @@ const Header = () => {
   }, []);
   return (
     <Container>
-      <Logo />
+      <Logo src="https://www.unoesc.edu.br/images/front_end/logo_unoesc.jpg"/>
       <NomeInstituicao>Unoesc</NomeInstituicao>
       <ContainerMenus>
-        <Menu>Home</Menu>
+        <Link to="/dashboard/1" style={{ textDecoration: "none" }}>
+          <Menu>Home</Menu>
+        </Link>
         <ColapsibleMenu>
           <input type="checkbox" id="menu-categoria" />
           <label htmlFor="menu-categoria">Categorias</label>
@@ -47,7 +43,7 @@ const Header = () => {
               {categoria.map((categoria) => (
                 <li key={categoria.id}>
                   <Link
-                    to={`/${categoria.id}`}
+                    to={`/dashboard/${categoria.id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <a>{categoria.nome}</a>

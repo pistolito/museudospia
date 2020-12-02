@@ -84,7 +84,7 @@ export const ColapsibleMenu = styled.div`
 
   li {
     margin-top: 10px;
-    background: #ddd;
+    background: #eee;
   }
 
   div {
@@ -93,7 +93,6 @@ export const ColapsibleMenu = styled.div`
     position: absolute;
     margin-top: 10px;
     width: 200px;
-    background-color: #fff;
   }
 
   a {

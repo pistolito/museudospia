@@ -17,6 +17,7 @@ import {
   Pesquisa,
   BtnPesquisa,
   PesquisaContainer,
+  Ad,
 } from "./styles";
 
 const Dashboard = () => {
@@ -32,15 +33,30 @@ const Dashboard = () => {
     adquirirCategoria();
   }, [id]);
 
-  const pesquisar = () => {
-    
-  }
+  const pesquisar = async (e) => {
+    const response = await api.post("objeto/nome", {
+      nome: e,
+      categoria: id,
+    });
+    setObjeto(response.data);
+  };
+
   return (
     <Container>
       <Body>
         <TituloCategoria>Categoria</TituloCategoria>
+
+        {localStorage.getItem("token") && (
+          <Ad>
+            <Link to="/configuracao" style={{ textDecoration: "none" }}>
+              <button>Admin</button>
+            </Link>
+          </Ad>
+        )}
         <PesquisaContainer>
-          <Pesquisa></Pesquisa>
+          <Pesquisa
+            onChange={(event) => pesquisar(event.target.value)}
+          ></Pesquisa>
           <BtnPesquisa>
             <FiSearch size={20} />
           </BtnPesquisa>
@@ -48,12 +64,11 @@ const Dashboard = () => {
         <Lista>
           {objeto.map((e) => (
             <ContainerSlider key={e.id}>
-              <ImagemObjeto src={e.Arquivos[0].url}></ImagemObjeto>
               <ContainerDescricao>
                 <Nome>{e.nome}</Nome>
                 <Descricao>{e.descricao}</Descricao>
+                <Local>Se encontra no local: {e.Local.descricao}</Local>
               </ContainerDescricao>
-              <Local>Se encontra no local: {e.Local.descricao}</Local>
             </ContainerSlider>
           ))}
         </Lista>

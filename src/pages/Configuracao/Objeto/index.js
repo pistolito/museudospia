@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBinFill } from "react-icons/ri";
+import api from "../../../services/api";
 
 import {
   Container,
@@ -13,64 +14,129 @@ import {
   Grid,
 } from "./styles";
 
-const Objeto = ({ id }) => {
-  const dados = [
-    { id: 1, nome: "teste 1", login: "teste 1", papel: 1 },
-    { id: 2, nome: "teste 2", login: "login 2", papel: 2 },
-    { id: 3, nome: "teste 1", login: "teste 1", papel: 1 },
-    { id: 4, nome: "teste 2", login: "login 2", papel: 2 },
-    { id: 5, nome: "teste 1", login: "teste 1", papel: 1 },
-    { id: 6, nome: "teste 2", login: "login 2", papel: 2 },
-    { id: 7, nome: "teste 1", login: "teste 1", papel: 1 },
-    { id: 8, nome: "teste 2", login: "login 2", papel: 2 },
-    { id: 9, nome: "teste 1", login: "teste 1", papel: 1 },
-    { id: 10, nome: "teste 2", login: "login 2", papel: 2 },
-  ];
+const Objeto = () => {
+  const [local, setLocal] = useState([]);
+  const [cat, setCategoria] = useState([]);
+  const [nome, setNome] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [all, setAll] = useState([]);
+
+  useEffect(() => {
+    const localad = async () => {
+      const responseLocal = await api.get("local");
+      setLocal(responseLocal.data);
+
+      const responseCategoria = await api.get("categoria");
+      setCategoria(responseCategoria.data);
+
+      const all = await api.get("all", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+
+      setAll(all.data);
+    };
+
+    localad();
+  }, []);
+
+  const salvar = async () => {
+    await api.post(
+      "objeto",
+      {
+        nome,
+        descricao,
+        codigo_categoria: document.getElementById("selectCat").value,
+        codigo_local: document.getElementById("selectLoc").value,
+        status: document.getElementById("selectSt").value,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+
+    const all = await api.get("all", {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    });
+
+    setAll(all.data);
+  };
+
   return (
     <Container>
       <Cadastro>
         <label id="titulo">Objetos</label>
         <Card>
           <Campo>
-            <label>Nome: </label> <input placeholder="Informe nome..." />
+            <label>Nome: </label>{" "}
+            <input
+              placeholder="Informe nome..."
+              onChange={(e) => setNome(e.target.value)}
+            />
           </Campo>
           <Campo>
-            <div id="login">
-              <label>Login: </label> <input placeholder="Informe login..." />
-              <label id="papel">Papel: </label>
-              <select>
-                <option value="1">Funcionário</option>
-                <option value="2">Administrador</option>
+            <label>Descrição: </label>
+            <input
+              placeholder="Informe descricação..."
+              onChange={(e) => setDescricao(e.target.value)}
+            />
+          </Campo>
+          <Campo>
+            <div>
+              <label>Categoria: </label>
+              <select id="selectCat">
+                {cat.map((l) => (
+                  <option key={l.id} value={l.id}>
+                    {l.nome}
+                  </option>
+                ))}
+              </select>
+              <label>Local: </label>
+              <select id="selectLoc">
+                {local.map((l) => (
+                  <option key={l.id} value={l.id}>
+                    {l.descricao}
+                  </option>
+                ))}
+              </select>
+              <label>Status: </label>
+              <select id="selectSt">
+                <option value={1}>Disponível</option>
+                <option value={2}>Manutenção</option>
               </select>
             </div>
           </Campo>
           <Campo>
-            <div id="senha">
-              <label>Senha: </label>
-              <input type="password" placeholder="Informe uma senha..." />
-            </div>
-            <div id="confirma">
-              <label>Confirmar Senha: </label>
-              <input type="password" placeholder="Confirme a senha..." />
-            </div>
+            <input type="file" id="avatar" accept="image/*" />
           </Campo>
-          <button>Salvar</button>
+          <button onClick={() => salvar()}>Salvar</button>
         </Card>
       </Cadastro>
       <Listagem>
         <ContainerGrid>
           <Cabecalho>
             <span id="first">nome</span>
-            <span id="login">Login</span>
-            <span id="papel">Papel</span>
+            <span id="login">descrição</span>
+            <span id="papel">categoria</span>
+            <span id="papel">local</span>
+            <span id="papel">status</span>
             <span id="acoes">Ações</span>
           </Cabecalho>
           <Grid>
-            {dados.map((e) => (
+            {all.map((e) => (
               <div key={e.id} id="row">
                 <span id="first">{e.nome}</span>
-                <span id="login">{e.login}</span>
-                <span id="papel">{e.papel === 1 ? "Funcionário" : "Administrador"}</span>
+                <span id="login">{e.descrição}</span>
+                <span id="papel">História</span>
+                <span id="papel">
+                  {e.categoria === 1 ? "Bloco D" : "Bloco C"}
+                </span>
+                <span id="papel">{e.local === 1 ? "História" : "Ciência"}</span>
                 <span id="acoes">
                   <FaEdit color="#d4bf00" />
                   <RiDeleteBinFill color="#ff4545" />

@@ -10,6 +10,11 @@ export const Body = styled.div`
   background-color: white;
 `;
 
+export const Ad = styled.div`
+  right: 20px;
+  position: absolute;
+`;
+
 export const TituloCategoria = styled.div`
   padding: 20px 20px 0 20px;
   font-size: 30px;
